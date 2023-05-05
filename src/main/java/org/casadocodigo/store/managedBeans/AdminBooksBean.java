@@ -21,6 +21,7 @@ public class AdminBooksBean {
     private Book product = new Book();
     @Inject
     private BookDAO bookDAO = new BookDAO();
+    @Inject
     private AuthorDAO authorDAO = new AuthorDAO();
     private List<Author> authors = new ArrayList<Author>();
     private List<Integer> selectedAuthorsIds = new ArrayList<>();
@@ -34,6 +35,14 @@ public class AdminBooksBean {
 
     public Book getProduct() {
         return product;
+    }
+
+    public List<Integer> getSelectedAuthorsIds() {
+        return selectedAuthorsIds;
+    }
+
+    public void setSelectedAuthorsIds(List<Integer> selectedAuthorsIds) {
+        this.selectedAuthorsIds = selectedAuthorsIds;
     }
 
     @PostConstruct
