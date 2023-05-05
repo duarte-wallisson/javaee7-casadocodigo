@@ -27,8 +27,6 @@ public class AdminBooksBean {
     private List<Integer> selectedAuthorsIds = new ArrayList<>();
 
     @Inject
-    private FacesContext facesContext;
-    @Inject
     private MessagesHelper messagesHelper;
     ;
 
@@ -57,7 +55,22 @@ public class AdminBooksBean {
     @Transactional
     public String save() {
         populateBookAuthor();
+
+        if(product.getTitle()==null || product.getTitle().trim().isEmpty()){
+            messagesHelper.addMessage(new FacesMessage("titulo obrigatorio"));
+        }
+
+        if(product.getDescription()==null || product.getDescription().trim().isEmpty()){
+            messagesHelper.addMessage(new FacesMessage("descrição obrigatoria"));
+        }
+
+        if(messagesHelper.hasMessages()){
+            return "/livros/form";
+        }
+
+
         bookDAO.save(product);
+
 
         messagesHelper.addFlash(new FacesMessage("Livro gravado com sucesso"));
         clearObjects();
@@ -71,9 +84,7 @@ public class AdminBooksBean {
 
 
     private void populateBookAuthor() {
-        selectedAuthorsIds.stream().map((id) -> {
-            return new Author(id);
-        }).forEach(product::add);
+        selectedAuthorsIds.stream().map(Author::new).forEach(product::add);
     }
 
 }
