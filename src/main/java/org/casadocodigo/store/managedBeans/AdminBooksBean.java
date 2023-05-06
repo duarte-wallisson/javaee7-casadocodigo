@@ -1,5 +1,7 @@
 package org.casadocodigo.store.managedBeans;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.casadocodigo.store.daos.AuthorDAO;
 import org.casadocodigo.store.daos.BookDAO;
 import org.casadocodigo.store.infra.MessagesHelper;
@@ -18,38 +20,23 @@ import java.util.List;
 
 @Model
 public class AdminBooksBean {
+    @Getter @Setter
     private Book product = new Book();
     @Inject
     private BookDAO bookDAO = new BookDAO();
     @Inject
     private AuthorDAO authorDAO = new AuthorDAO();
+    @Getter
     private List<Author> authors = new ArrayList<Author>();
+    @Getter
     private List<Integer> selectedAuthorsIds = new ArrayList<>();
 
     @Inject
     private MessagesHelper messagesHelper;
-    ;
-
-
-    public Book getProduct() {
-        return product;
-    }
-
-    public List<Integer> getSelectedAuthorsIds() {
-        return selectedAuthorsIds;
-    }
-
-    public void setSelectedAuthorsIds(List<Integer> selectedAuthorsIds) {
-        this.selectedAuthorsIds = selectedAuthorsIds;
-    }
 
     @PostConstruct
     public void loadObjects() {
         this.authors = authorDAO.list();
-    }
-
-    public List<Author> getAuthors() {
-        return authors;
     }
 
     @Transactional
@@ -68,9 +55,7 @@ public class AdminBooksBean {
             return "/livros/form";
         }
 
-
         bookDAO.save(product);
-
 
         messagesHelper.addFlash(new FacesMessage("Livro gravado com sucesso"));
         clearObjects();
@@ -81,7 +66,6 @@ public class AdminBooksBean {
         this.product = new Book();
         this.selectedAuthorsIds.clear();
     }
-
 
     private void populateBookAuthor() {
         selectedAuthorsIds.stream().map(Author::new).forEach(product::add);

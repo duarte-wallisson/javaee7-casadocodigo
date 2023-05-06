@@ -1,5 +1,6 @@
 package org.casadocodigo.store.managedBeans;
 
+import lombok.Getter;
 import org.casadocodigo.store.daos.BookDAO;
 import org.casadocodigo.store.models.Book;
 
@@ -13,14 +14,11 @@ import java.util.List;
 public class AdminListBooksBean {
     @Inject
     private BookDAO bookDAO;
+    @Getter
     private List<Book> books = new ArrayList<Book>();
 
     @PostConstruct
     private void loadObjects() {
         this.books = bookDAO.list();
-    }
-
-    public List<Book> getBooks() {
-        return books;
     }
 }

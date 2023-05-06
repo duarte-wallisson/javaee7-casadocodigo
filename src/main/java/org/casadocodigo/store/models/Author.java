@@ -1,8 +1,15 @@
 package org.casadocodigo.store.models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
-
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class Author {
     @Id
@@ -10,30 +17,9 @@ public class Author {
     private Integer id;
     private String name;
 
-    public Author() {
-
-    }
-
     public Author(Integer id) {
         this.id = id;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 
 }
 
