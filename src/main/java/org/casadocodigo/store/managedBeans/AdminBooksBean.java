@@ -11,7 +11,6 @@ import org.casadocodigo.store.models.Book;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -20,16 +19,15 @@ import java.util.List;
 
 @Model
 public class AdminBooksBean {
-    @Getter @Setter
+    @Getter
+    @Setter
     private Book product = new Book();
     @Inject
     private BookDAO bookDAO = new BookDAO();
     @Inject
     private AuthorDAO authorDAO = new AuthorDAO();
     @Getter
-    private List<Author> authors = new ArrayList<Author>();
-    @Getter
-    private List<Integer> selectedAuthorsIds = new ArrayList<>();
+    private List<Author> authors = new ArrayList<>();
 
     @Inject
     private MessagesHelper messagesHelper;
@@ -41,17 +39,15 @@ public class AdminBooksBean {
 
     @Transactional
     public String save() {
-        populateBookAuthor();
-
-        if(product.getTitle()==null || product.getTitle().trim().isEmpty()){
+        if (product.getTitle() == null || product.getTitle().trim().isEmpty()) {
             messagesHelper.addMessage(new FacesMessage("titulo obrigatorio"));
         }
 
-        if(product.getDescription()==null || product.getDescription().trim().isEmpty()){
+        if (product.getDescription() == null || product.getDescription().trim().isEmpty()) {
             messagesHelper.addMessage(new FacesMessage("descrição obrigatoria"));
         }
 
-        if(messagesHelper.hasMessages()){
+        if (messagesHelper.hasMessages()) {
             return "/livros/form";
         }
 
@@ -64,11 +60,6 @@ public class AdminBooksBean {
 
     private void clearObjects() {
         this.product = new Book();
-        this.selectedAuthorsIds.clear();
-    }
-
-    private void populateBookAuthor() {
-        selectedAuthorsIds.stream().map(Author::new).forEach(product::add);
     }
 
 }

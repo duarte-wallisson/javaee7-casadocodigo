@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -43,8 +44,7 @@ public class Book {
     @NotNull
     private List<Author> authors = new ArrayList<Author>();
 
-    public void add(Author author) {
-        authors.add(author);
-    }
+    @NotNull
+    private Calendar releaseDate;
 
 }
