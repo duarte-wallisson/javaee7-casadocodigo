@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
+import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,9 @@ public class AdminBooksBean {
     private AuthorDAO authorDAO = new AuthorDAO();
     @Getter
     private List<Author> authors = new ArrayList<>();
+    @Getter
+    @Setter
+    private Part summary;
 
     @Inject
     private MessagesHelper messagesHelper;
@@ -39,13 +43,9 @@ public class AdminBooksBean {
 
     @Transactional
     public String save() {
-        if (product.getTitle() == null || product.getTitle().trim().isEmpty()) {
-            messagesHelper.addMessage(new FacesMessage("titulo obrigatorio"));
-        }
+        System.out.println(summary.getName() + ";"
+                + summary.getHeader("content-disposition"));
 
-        if (product.getDescription() == null || product.getDescription().trim().isEmpty()) {
-            messagesHelper.addMessage(new FacesMessage("descrição obrigatoria"));
-        }
 
         if (messagesHelper.hasMessages()) {
             return "/livros/form";
@@ -61,5 +61,4 @@ public class AdminBooksBean {
     private void clearObjects() {
         this.product = new Book();
     }
-
 }

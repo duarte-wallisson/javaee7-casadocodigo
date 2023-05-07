@@ -19,6 +19,6 @@ public class BookDAO {
     }
 
     public List<Book> list() {
-        return manager.createQuery("select distinct(b) from Book b join fetch b.authors",Book.class).getResultList();
+        return manager.createQuery("select distinct(b) from Book b join fetch b.authors", Book.class).getResultList();
     }
 }

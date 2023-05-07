@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns:h="http://java.sun.com/jsf/html"
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:body>
     <h:dataTable value="#{adminListBooksBean.books}"
@@ -26,6 +25,12 @@
                        value="#{book.authors}">
                 #{author.name}|
             </ui:repeat>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Sumário</f:facet>
+            <h:outputLink value="#{request.contextPath}/#{book.summaryPath}">
+                #{book.summaryPath}
+            </h:outputLink>
         </h:column>
     </h:dataTable>
 </h:body>
