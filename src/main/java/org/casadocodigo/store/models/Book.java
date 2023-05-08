@@ -40,5 +40,7 @@ public class Book {
     private List<Author> authors = new ArrayList<>();
     @NotNull
     private Calendar releaseDate;
-    private String summaryPath;
+
+//    Temporário
+    private String summaryPath = "https://s3.console.aws.amazon.com/s3/upload/casadocodigo-duarte?region=sa-east-1";
 }

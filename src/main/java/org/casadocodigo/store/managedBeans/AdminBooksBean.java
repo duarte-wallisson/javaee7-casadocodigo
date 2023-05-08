@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.casadocodigo.store.daos.AuthorDAO;
 import org.casadocodigo.store.daos.BookDAO;
+import org.casadocodigo.store.infra.FileSaver;
 import org.casadocodigo.store.infra.MessagesHelper;
 import org.casadocodigo.store.models.Author;
 import org.casadocodigo.store.models.Book;
@@ -35,6 +36,8 @@ public class AdminBooksBean {
 
     @Inject
     private MessagesHelper messagesHelper;
+//    @Inject
+//    private FileSaver fileSaver;
 
     @PostConstruct
     public void loadObjects() {
@@ -43,13 +46,9 @@ public class AdminBooksBean {
 
     @Transactional
     public String save() {
-        System.out.println(summary.getName() + ";"
-                + summary.getHeader("content-disposition"));
-
-
-        if (messagesHelper.hasMessages()) {
-            return "/livros/form";
-        }
+//        ---Implantar depois CAP 6.3 e 6.4
+//        String summaryPath = fileSaver.write("casadocodigo-duarte", summary);
+//        product.setSummaryPath(summaryPath);
 
         bookDAO.save(product);
 
