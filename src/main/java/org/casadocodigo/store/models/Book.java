@@ -34,7 +34,7 @@ public class Book {
     @DecimalMin("20")
     @NotNull
     private BigDecimal price;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @Size(min = 1)
     @NotNull
     private List<Author> authors = new ArrayList<>();
@@ -43,4 +43,5 @@ public class Book {
 
 //    Temporário
     private String summaryPath = "https://s3.console.aws.amazon.com/s3/upload/casadocodigo-duarte?region=sa-east-1";
+    private String coverPath = "";
 }

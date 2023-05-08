@@ -1,4 +1,4 @@
-package org.casadocodigo.store.managedBeans;
+package org.casadocodigo.store.managedBeans.admin;
 
 import lombok.Getter;
 import org.casadocodigo.store.daos.BookDAO;
