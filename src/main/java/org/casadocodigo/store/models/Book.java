@@ -18,6 +18,7 @@ import javax.validation.constraints.*;
 @Setter
 @ToString
 @Entity
+@Cacheable
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
