@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,6 +17,12 @@ public class Checkout {
     private SystemUser buyer;
     private BigDecimal value;
     private String jsonCart;
+    private String uuid;
+
+    @PrePersist
+    public void prePersist(){
+        this.uuid = UUID.randomUUID().toString();
+    }
 
     protected Checkout() {
     }

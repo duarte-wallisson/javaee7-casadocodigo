@@ -11,7 +11,9 @@ import org.casadocodigo.store.models.SystemUser;
 import org.casadocodigo.store.services.PaymentGateway;
 
 import javax.enterprise.inject.Model;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.IOException;
 
@@ -28,6 +30,8 @@ public class CheckoutBean {
     private ShoppingCart cart;
     @Inject
     private PaymentGateway paymentGateway;
+    @Inject
+    private FacesContext facesContext;
 
 
     @Transactional
@@ -36,7 +40,11 @@ public class CheckoutBean {
         Checkout checkout = new Checkout(systemUser,cart);
         checkoutDAO.save(checkout);
 
-        paymentGateway.pay(checkout.getValue());
+        String contextName = facesContext.getExternalContext().getContextName();
+        HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
+        response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+        response.setHeader("Location", "/"+contextName+"/ services/payment?uuid="+checkout.getUuid());
+
     }
 
 }
