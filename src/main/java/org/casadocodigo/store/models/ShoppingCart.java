@@ -3,6 +3,9 @@ package org.casadocodigo.store.models;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -60,16 +63,16 @@ public class ShoppingCart implements Serializable {
         return items.isEmpty();
     }
 
-//    public String toJson() {
-//        JsonArrayBuilder itens = Json.createArrayBuilder();
-//        for (ShoppingItem item : getList()) {
-//            itens.add(Json.createObjectBuilder()
-//                    .add("title", item.getBook().getTitle())
-//                    .add("price", item.getBook().getPrice())
-//                    .add("quantity",getQuantity(item).intValue())
-//                    .add("sum", getTotal(item)));
-//
-//        }
-//        return itens.build().toString();
-//    }
+    public String toJson() {
+        JsonArrayBuilder itens = Json.createArrayBuilder();
+        for (ShoppingItem item : getList()) {
+            itens.add(Json.createObjectBuilder()
+                    .add("title", item.getBook().getTitle())
+                    .add("price", item.getBook().getPrice())
+                    .add("quantity",getQuantity(item).intValue())
+                    .add("sum", getTotal(item)));
+
+        }
+        return itens.build().toString();
+    }
 }

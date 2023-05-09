@@ -22,7 +22,7 @@ public class Checkout {
     public Checkout(SystemUser user, ShoppingCart cart) {
         this.buyer = user;
         this.value = cart.getTotal();
-//        this.jsonCart = cart.toJson();
+        this.jsonCart = cart.toJson();
     }
 
 }

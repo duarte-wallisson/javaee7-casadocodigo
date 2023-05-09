@@ -388,5 +388,8 @@
     <orderEntry type="library" name="Maven: com.amazonaws:aws-java-sdk-swf-libraries:1.11.22" level="project" />
     <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.3.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.json:javax.json-api:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish:javax.json:1.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.ws.rs:javax.ws.rs-api:2.1.1" level="project" />
   </component>
 </module>
