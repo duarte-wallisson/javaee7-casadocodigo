@@ -391,5 +391,6 @@
     <orderEntry type="library" name="Maven: javax.json:javax.json-api:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish:javax.json:1.1" level="project" />
     <orderEntry type="library" name="Maven: javax.ws.rs:javax.ws.rs-api:2.1.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.enterprise.concurrent:javax.enterprise.concurrent-api:1.1" level="project" />
   </component>
 </module>

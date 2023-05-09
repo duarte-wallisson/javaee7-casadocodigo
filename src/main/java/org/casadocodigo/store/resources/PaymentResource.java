@@ -4,6 +4,8 @@ import org.casadocodigo.store.daos.CheckoutDAO;
 import org.casadocodigo.store.models.Checkout;
 import org.casadocodigo.store.services.PaymentGateway;
 
+import javax.annotation.Resource;
+import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.ws.rs.POST;
@@ -26,7 +28,8 @@ public class PaymentResource {
     private CheckoutDAO checkoutDAO;
     @Inject
     private PaymentGateway paymentGateway;
-    private static ExecutorService executor = Executors.newFixedThreadPool(50);
+    @Resource(name = "java:comp/DefaultManagedExecutorService")
+    private ManagedExecutorService managedExecutorService;
     @Context
     private ServletContext ctx;
 
@@ -36,7 +39,7 @@ public class PaymentResource {
                     @QueryParam("uuid") String uuid) {
         String contextPath = ctx.getContextPath();
         Checkout checkout = checkoutDAO.findByUuid(uuid);
-        executor.submit(() -> {
+        managedExecutorService.submit(() -> {
             BigDecimal total = checkout.getValue();
             try {
                 paymentGateway.pay(total);
