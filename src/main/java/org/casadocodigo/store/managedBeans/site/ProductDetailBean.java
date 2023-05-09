@@ -6,15 +6,12 @@ import org.casadocodigo.store.daos.BookDAO;
 import org.casadocodigo.store.models.Book;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Stateful;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
 @Model
-@Stateful
 public class ProductDetailBean {
     @PersistenceContext
     private EntityManager manager;

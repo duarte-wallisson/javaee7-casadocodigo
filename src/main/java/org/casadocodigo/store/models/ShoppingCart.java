@@ -1,5 +1,6 @@
 package org.casadocodigo.store.models;
 
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -9,13 +10,12 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+
+//import javax.json.Json;
+//import javax.json.JsonArrayBuilder;
 @Named
 @SessionScoped
 public class ShoppingCart implements Serializable {
-
-    /**
-     *
-     */
     private static final long serialVersionUID = 7850305149527655083L;
     private Map<ShoppingItem, Integer> items = new LinkedHashMap<ShoppingItem, Integer>();
 

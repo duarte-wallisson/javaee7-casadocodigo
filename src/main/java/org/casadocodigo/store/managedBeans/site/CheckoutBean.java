@@ -1,6 +1,10 @@
 package org.casadocodigo.store.managedBeans.site;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.casadocodigo.store.daos.CheckoutDAO;
 import org.casadocodigo.store.daos.SystemUserDAO;
+import org.casadocodigo.store.models.Checkout;
 import org.casadocodigo.store.models.ShoppingCart;
 import org.casadocodigo.store.models.SystemUser;
 
@@ -11,25 +15,21 @@ import java.io.IOException;
 
 @Model
 public class CheckoutBean {
+    @Getter
+    @Setter
     private SystemUser systemUser = new SystemUser();
     @Inject
     private SystemUserDAO systemUserDAO;
     @Inject
+    private CheckoutDAO checkoutDAO;
+    @Inject
     private ShoppingCart cart;
-
-    public SystemUser getSystemUser() {
-        return systemUser;
-    }
-
-    public void setSystemUser(SystemUser systemUser) {
-        this.systemUser = systemUser;
-    }
 
     @Transactional
     public void checkout() throws IOException {
         systemUserDAO.save(systemUser);
-        //vamos também gravar a compra
-        //aprovar com um sistema externo
+        Checkout checkout = new Checkout(systemUser, cart);
+        checkoutDAO.save(checkout);
     }
 }
 

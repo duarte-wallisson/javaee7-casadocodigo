@@ -4,15 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.casadocodigo.store.models.validation.groups.BuyerGroup;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
+@Entity
 public class SystemUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
