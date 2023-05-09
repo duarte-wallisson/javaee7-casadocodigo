@@ -13,12 +13,15 @@ import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import javax.xml.bind.annotation.*;
 
 @Getter
 @Setter
 @ToString
 @Entity
 @Cacheable
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +41,8 @@ public class Book {
     @ManyToMany(fetch = FetchType.EAGER)
     @Size(min = 1)
     @NotNull
+    @XmlElement(name="author")
+    @XmlElementWrapper(name="authors")
     private List<Author> authors = new ArrayList<>();
     @NotNull
     private Calendar releaseDate;
