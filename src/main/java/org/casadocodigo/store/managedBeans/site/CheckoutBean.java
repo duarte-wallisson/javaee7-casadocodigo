@@ -40,10 +40,10 @@ public class CheckoutBean {
         Checkout checkout = new Checkout(systemUser,cart);
         checkoutDAO.save(checkout);
 
-        String contextName = facesContext.getExternalContext().getContextName();
-        HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
-        response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        response.setHeader("Location", "/"+contextName+"/ services/payment?uuid="+checkout.getUuid());
+        String contextName = facesContext.getExternalContext().getRequestContextPath();
+//        HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
+//        response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+//        response.setHeader("Location", "/"+contextName+"/services/payment?uuid="+checkout.getUuid());
 
     }
 
