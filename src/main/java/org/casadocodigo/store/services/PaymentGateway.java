@@ -13,10 +13,8 @@ public class PaymentGateway {
     public void pay(BigDecimal total) {
         Client client = ClientBuilder.newClient();
         PaymentData paymentData = new PaymentData(total);
-        String uriToPay =
-                "http://book-payment.herokuapp.com/payment";
+        String uriToPay = "https://reqbin.com/echo/post/json";
         Entity<PaymentData> json = Entity.json(paymentData);
-        client.target(uriToPay).request()
-                .post(json, String.class);
+        client.target(uriToPay).request().post(json, String.class);
     }
 }
